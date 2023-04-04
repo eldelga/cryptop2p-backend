@@ -1,4 +1,4 @@
-FROM gradle:6.9.2-jdk17-alpine
+FROM gradle:8.0.2-jdk17-alpine
 WORKDIR /home/gradle/project
-COPY ./ ./
-RUN gradlew bootRun
+ADD ./ ./
+CMD ["gradle", "bootRun"] 
