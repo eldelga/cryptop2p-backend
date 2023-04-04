@@ -1,4 +1,5 @@
-FROM gradle:8.0.2-jdk17-alpine
+FROM gradle:8.0.2-jdk17-jammy
 WORKDIR /home/gradle/project
-ADD ./ ./
-CMD ["gradle", "bootRun"] 
+COPY ./ ./
+RUN chmod +x gradlew
+CMD ["gradlew", "bootRun"] 
