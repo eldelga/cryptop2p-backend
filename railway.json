@@ -4,7 +4,7 @@
       "builder": "dockerfile"    
     },
     "deploy": {
-      "startCommand": "gradlew bootRun",
+      "startCommand": "./gradlew bootRun",
       "healthcheckPath": "/",
       "healthcheckTimeout": 100,
       "restartPolicyType": "never"
