@@ -3,4 +3,4 @@ WORKDIR /home/gradle/project
 COPY ./ ./
 RUN chmod +x ./gradlew
 RUN sed -i -e 's/\r$//' ./gradlew
-CMD ["gradlew", "bootRun"] 
+CMD ["./gradlew", "bootRun"] 
