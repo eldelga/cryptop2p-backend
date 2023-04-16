@@ -1,6 +1,7 @@
-FROM gradle:8.0.2-jdk17-jammy
+FROM gradle:6.9.2-jdk17-alpine
 WORKDIR /home/gradle/project
 COPY ./ ./
-RUN chmod +x ./gradlew
-RUN sed -i -e 's/\r$//' ./gradlew
-CMD ["./gradlew", "bootRun"] 
+RUN gradle wrapper --gradle-version 6.9
+# RUN chmod +x ./gradlew
+# RUN sed -i -e 's/\r$//' ./gradlew
+CMD ["gradlew", "bootRun"] 
