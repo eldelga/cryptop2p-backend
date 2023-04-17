@@ -20,15 +20,17 @@ public class User {
     private Integer sucessfulOperations ;
     private Integer totalOperations;
 
+    public User() {
+        
+    }
 
-
-	public User(UserBuilder userBuilder) {
-		this.firstName = userBuilder.firstName; ;
-		this.lastName = userBuilder.lastName ;
-		this.address = userBuilder.address ;
-		this.email = userBuilder.email ;
-		this.password = userBuilder.password ;
-        this.walletUrl = userBuilder.walletUrl ;
+	public User(String firstName,String lastName,String address,String email,String password,String walletUrl) {
+		this.firstName = firstName ; 
+		this.lastName = lastName ;
+		this.address = address ;
+		this.email = email ;
+		this.password = password ;
+        this.walletUrl = walletUrl ;
         this.rate = 0 ;
         this.sucessfulOperations = 0 ;
         this.totalOperations = 0 ;
@@ -59,52 +61,4 @@ public class User {
     	return this.address;
     }
 
- 
-
-    public static class UserBuilder {
-
-             
-        private final String firstName;
-        private final String lastName;
-        private String address;
-        private String email;
-        private String password;
-        private String walletUrl;
-    
-        public UserBuilder(String firstName, String lastName) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
-
-        public UserBuilder withAddress(String address) {
-            this.address = address;
-            return this;
-        }
-
-        public UserBuilder withEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public UserBuilder withPassword(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public UserBuilder withWalletUrl(String walletUrl) {
-            this.walletUrl = walletUrl;
-            return this;
-        }  
-       
-        //Return the finally consrcuted User object
-        public User build() {
-            User user =  new User(this);
-            validateUserObject(user);
-            return user;
-        }
-        private void validateUserObject(User user) {
-            //Do some basic validations to check
-            //if user object does not break any assumption of system
-        }
-    }
 }

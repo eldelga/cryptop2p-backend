@@ -1,9 +1,17 @@
 package com.desapp.backendcryptop2p.controller;
-import java.util.List;
+
 import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -13,8 +21,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("user/getAll")
-    public List<User> getAll() {
+    @ApiOperation(value = "Get all users", notes = "Returns all users")
+    @ApiResponses(value={
+    @ApiResponse(code=200, message = "OK"),
+    @ApiResponse(code=400,message = "Bad Request")})
+    @GetMapping(value = "/user/getAll")
+    public Iterable<User> getAll() {
         return userService.getAll();
+    }
+
+    @PostMapping(value = "/user/create")
+    public void save(@RequestBody User user) {
+       this.userService.createUser(user);
     }
 }
