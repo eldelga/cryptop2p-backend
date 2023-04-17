@@ -23,15 +23,21 @@ public class UserController {
 
     @ApiOperation(value = "Get all users", notes = "Returns all users")
     @ApiResponses(value={
-    @ApiResponse(code=200, message = "OK"),
-    @ApiResponse(code=400,message = "Bad Request")})
-    @GetMapping(value = "/user/getAll")
+        @ApiResponse(code=200, message = "OK"),
+        @ApiResponse(code=400,message = "Bad Request")
+    })
+    @GetMapping(value = "/users")
     public Iterable<User> getAll() {
         return userService.getAll();
     }
 
-    @PostMapping(value = "/user/create")
+    @ApiOperation(value = "Create new user", notes = "")
+    @ApiResponses(value={
+        @ApiResponse(code=200, message = "OK"),
+        @ApiResponse(code=400,message = "Bad Request")
+    })
+    @PostMapping(value = "/user")
     public void save(@RequestBody User user) {
-       this.userService.createUser(user);
+       this.userService.create(user);
     }
 }

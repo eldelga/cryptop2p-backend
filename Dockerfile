@@ -1,7 +1,27 @@
-FROM gradle:6.9.2-jdk17-alpine
+# Establecer la imagen base de Java
+FROM gradle:7.3.0-jdk17-alpine
+
+# Establecer el directorio de trabajo en la imagen
 WORKDIR /home/gradle/project
-COPY ./ ./
-RUN gradle wrapper --gradle-version 6.9
-# RUN chmod +x ./gradlew
-# RUN sed -i -e 's/\r$//' ./gradlew
-CMD ["gradlew", "bootRun"] 
+
+# Copiar el archivo build.gradle y settings.gradle a la imagen
+COPY build.gradle .
+COPY settings.gradle .
+
+# Copiar la carpeta src a la imagen
+COPY src/ src/
+
+# Ejecutar el comando gradle wrapper para descargar el Gradle Wrapper
+RUN gradle wrapper --gradle-version 7.3
+
+# Copiar todos los archivos del proyecto a la imagen
+COPY . .
+
+# Ejecutar el comando de construcción del proyecto con Gradle
+RUN ./gradlew build
+
+# Exponer el puerto en el que se ejecuta la aplicación
+EXPOSE 8080
+
+# Ejecutar la aplicación Spring Boot
+CMD ["java", "-jar", "build/libs/backend-cryptop2p-0.0.1-SNAPSHOT.jar"]

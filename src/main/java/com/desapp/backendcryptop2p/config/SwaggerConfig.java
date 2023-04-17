@@ -5,8 +5,10 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
+
 
 
 @Configuration
@@ -15,6 +17,8 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
         type = SecuritySchemeType.HTTP,
         scheme = "bearer"
 )
+
+@Profile("swagger")
 public class SwaggerConfig implements WebMvcConfigurer {
 
    @Bean
@@ -26,4 +30,6 @@ public class SwaggerConfig implements WebMvcConfigurer {
                        .description("CryptoP2P Version 1.0")
                        .termsOfService("http://swagger.io/terms/"));
    }
+
+   
 }
