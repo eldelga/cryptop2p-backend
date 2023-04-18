@@ -17,7 +17,7 @@ RUN gradle wrapper --gradle-version 7.3
 # Copiar todos los archivos del proyecto a la imagen
 # COPY . .
 
-RUN chmod -x gradlew
+RUN chmod +x gradlew
 
 # Ejecutar el comando de construcción del proyecto con Gradle
 RUN ./gradlew build
