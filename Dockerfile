@@ -15,7 +15,7 @@ COPY src/ src/
 RUN gradle wrapper --gradle-version 7.3
 
 # Copiar todos los archivos del proyecto a la imagen
-# COPY . .
+COPY . .
 
 RUN chmod +x gradlew
 
