@@ -1,6 +1,10 @@
 package com.desapp.backendcryptop2p.model;
 import javax.persistence.*;
-
+import lombok.Getter;
+import lombok.Setter;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -9,56 +13,37 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String email;
-    private String password;
-    private Integer rate ;
-    private String walletUrl;
-    private Integer sucessfulOperations ;
-    private Integer totalOperations;
+    @Getter @Setter private Integer id;
+    @Size(min = 3, max = 30)
+    @Getter @Setter private String firstName;
+    @Size(min = 3, max = 30)
+    @Getter @Setter private String lastName;
+    @Size(min = 10, max = 30)
+    @Getter @Setter private String address;
+    @Email
+    @Getter @Setter private String email;
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,}$", message = "La contraseña debe tener al menos 1 minúscula, 1 mayúscula, 1 carácter especial y un mínimo de 6 caracteres")
+    @Getter @Setter private String password;
+    @Getter  private Integer rate ;
+    @Size(min = 8, max = 8)
+    @Getter  private String walletAddress;
+    @Size(min = 20, max = 20)
+    @Getter  private String cvu;
+    @Getter Integer sucessfulOperations ;
+    @Getter Integer totalOperations;
 
-    public User() {
-        
-    }
+    public User() {}
 
-	public User(String firstName,String lastName,String address,String email,String password,String walletUrl) {
+	public User(String firstName,String lastName,String address,String email,String password,String walletAddress) {
 		this.firstName = firstName ; 
 		this.lastName = lastName ;
 		this.address = address ;
 		this.email = email ;
 		this.password = password ;
-        this.walletUrl = walletUrl ;
+        this.walletAddress = walletAddress ;
         this.rate = 0 ;
         this.sucessfulOperations = 0 ;
         this.totalOperations = 0 ;
 	}
-
-
-    public Long getId() {
-    	return this.id ;
-    }
-    
-    public String getFirstName() {
-    	return this.firstName ;
-    }
-    
-    public String getLastName() {
-    	return this.lastName ;
-    }
-    
-    public String getEmail() {
-    	return this.email ;
-    }
-    
-    public String getPassword() {
-    	return this.password ;
-    }
-    
-    public String getAddress() {
-    	return this.address;
-    }
 
 }
