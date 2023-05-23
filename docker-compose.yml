@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MARIADB_ROOT_HOST:
+      MYSQL_DATABASE: scm
+      TZ: America/Buenos_Aires
+    ports:
+      - 3306:3306

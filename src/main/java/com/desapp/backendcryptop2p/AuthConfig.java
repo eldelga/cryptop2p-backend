@@ -16,6 +16,7 @@ public class AuthConfig {
         protected void configure(HttpSecurity http) throws Exception {
             // Deshabilitar CSRF
             http.csrf().disable();
+            http.headers().frameOptions().disable();
         }
 
         // Otras configuraciones de seguridad aquí

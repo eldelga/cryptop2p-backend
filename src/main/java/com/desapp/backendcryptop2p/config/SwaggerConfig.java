@@ -13,9 +13,9 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 
 @Configuration
 @SecurityScheme(
-        name = "bearerAuth",
+        name = "basicAuth",
         type = SecuritySchemeType.HTTP,
-        scheme = "bearer"
+        scheme = "basic"
 )
 
 @Profile("swagger")
