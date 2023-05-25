@@ -32,6 +32,7 @@ public class Offer {
     private Double nominalValue ;
     private Double cryptoValue;
     private Double pesosQuotation;
+    private Double cryptoQuotation;
 
     @Enumerated
     private OperationType type;
@@ -46,5 +47,22 @@ public class Offer {
     public double getAmountInPesos(){
         return this.getPesosQuotation() * this.getCryptoValue();
     }
+
+    public void checkData() throws ModelException {
+        double diff = this.getCryptoQuotation() - getCryptoValue();
+        double diffPercent = 0;
+
+        if (Math.abs(this.getCryptoQuotation()) > 0) {
+            diffPercent = (diff / Math.abs(this.getCryptoQuotation())) * 100;
+        } 
+
+        if (Math.abs(diffPercent) > 5 ){
+            throw new ModelException();
+        }
+
+
+
+    }
+
 
 }

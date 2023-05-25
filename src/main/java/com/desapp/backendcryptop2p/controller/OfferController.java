@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.desapp.backendcryptop2p.service.OfferService;
-import com.desapp.backendcryptop2p.model.Offer;
 import com.desapp.backendcryptop2p.model.OfferCreateDTO;
 import com.desapp.backendcryptop2p.model.OfferReadDTO;
 

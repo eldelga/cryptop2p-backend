@@ -23,16 +23,16 @@ public class CryptoActiveService {
     
    
     public List<CryptoActiveDTO> getAll() {
-        return this.modelMapper.ToList(this.cryptoActiveRepository.findAll(), CryptoActiveDTO.class);
+        return this.modelMapper.toList(this.cryptoActiveRepository.findAll(), CryptoActiveDTO.class);
         // return this.cryptoActiveRepository.findAll();
     }
 
     public List<CryptoActiveDTO> findMaxdates(){
-        return this.modelMapper.ToList(this.cryptoActiveRepository.getLastUpdated(), CryptoActiveDTO.class);
+        return this.modelMapper.toList(this.cryptoActiveRepository.getLastUpdated(), CryptoActiveDTO.class);
     }
 
     public void create(CryptoActiveDTO cryptoActiveDTO) {
-        CryptoActive newCryptoActive = modelMapper.To(cryptoActiveDTO,CryptoActive.class) ;
+        CryptoActive newCryptoActive = modelMapper.to(cryptoActiveDTO,CryptoActive.class) ;
         this.cryptoActiveRepository.save(newCryptoActive);
     }
 
@@ -47,9 +47,7 @@ public class CryptoActiveService {
             CryptoActive cryptoActive = restTemplate.getForObject(uri, CryptoActive.class);
             this.cryptoActiveRepository.save(cryptoActive);
         });
-        
-        
-        
+    
     }
 
 }

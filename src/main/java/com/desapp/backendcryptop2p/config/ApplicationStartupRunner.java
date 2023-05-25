@@ -8,14 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.desapp.backendcryptop2p.dto.CryptoActiveDTO;
-import com.desapp.backendcryptop2p.model.CryptoType;
 import com.desapp.backendcryptop2p.model.User;
-import com.desapp.backendcryptop2p.model.OfferCreateDTO;
-import com.desapp.backendcryptop2p.model.OperationType;
 import com.desapp.backendcryptop2p.model.UserCreateDTO;
-import com.desapp.backendcryptop2p.service.CryptoActiveService;
-import com.desapp.backendcryptop2p.service.OfferService;
 import com.desapp.backendcryptop2p.service.UserService;
 
 

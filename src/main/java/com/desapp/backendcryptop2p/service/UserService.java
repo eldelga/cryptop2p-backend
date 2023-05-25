@@ -20,7 +20,7 @@ public class UserService {
     private MapperComponent modelMapper;
     
     public List<UserReadDTO> getAll() {
-        return this.modelMapper.ToList(this.userRepository.findAll(), UserReadDTO.class);
+        return this.modelMapper.toList(this.userRepository.findAll(), UserReadDTO.class);
     }
 
     public User getByEmail(String email){
@@ -28,7 +28,7 @@ public class UserService {
     }
 
     public UserCreateDTO create(UserCreateDTO user) {
-        User newUser = this.modelMapper.To(user, User.class) ; 
+        User newUser = this.modelMapper.to(user, User.class) ; 
         newUser.setSucessfulOperations(0);
         newUser.setTotalOperations(0);
         newUser.updateRate();

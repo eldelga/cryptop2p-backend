@@ -1,16 +1,13 @@
 package com.desapp.backendcryptop2p.model;
-
+import lombok.Data;
 import javax.persistence.Enumerated;
 
-import lombok.Getter;
-import lombok.Setter;
-
+@Data
 public class OfferCreateDTO {
-
     @Enumerated
-    @Getter @Setter private OperationType type;
-    @Getter @Setter private Double nominalValue ;
+    private OperationType type;
+    private Double nominalValue ;
     @Enumerated
-    @Getter @Setter private CryptoType cryptoType;
-    @Getter @Setter private String email;
+    private CryptoType cryptoType;
+    private String email;
 }

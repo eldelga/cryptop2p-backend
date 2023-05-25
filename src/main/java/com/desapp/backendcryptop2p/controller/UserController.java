@@ -1,6 +1,5 @@
 package com.desapp.backendcryptop2p.controller;
 
-import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.UserCreateDTO;
 import com.desapp.backendcryptop2p.model.UserReadDTO;
 import com.desapp.backendcryptop2p.service.UserService;

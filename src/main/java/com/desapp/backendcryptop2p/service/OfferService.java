@@ -31,12 +31,12 @@ public class OfferService {
     private QuotationService quotationService;
 
     public List<OfferReadDTO> getAll() {
-        return this.modelMapper.ToList(this.offerRepository.findAllByActive(true), OfferReadDTO.class);
+        return this.modelMapper.toList(this.offerRepository.findAllByActive(true), OfferReadDTO.class);
     }
 
 
     public OfferCreateDTO create(OfferCreateDTO offerDTO) {
-        Offer newOffer = this.modelMapper.To(offerDTO, Offer.class);
+        Offer newOffer = this.modelMapper.to(offerDTO, Offer.class);
         User user = this.userService.getByEmail(offerDTO.getEmail());
         CryptoActive cryptoActive = this.cryptoActiveService.getLastBySymbol(offerDTO.getCryptoType());
         newOffer.setCreatedBy(user);

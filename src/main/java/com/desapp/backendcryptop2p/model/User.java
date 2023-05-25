@@ -3,7 +3,6 @@ package com.desapp.backendcryptop2p.model;
 
 import javax.persistence.*;
 
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Bean;
 public class BackendCryptop2pApplication {
 	@Bean
 	public ModelMapper modelMapper() {
-		ModelMapper modelMapper = new ModelMapper();
-		return modelMapper;
+		return new ModelMapper();
 	}
 	
 	public static void main(String[] args) {

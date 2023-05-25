@@ -15,14 +15,14 @@ public class MapperComponent {
     private ModelMapper modelMapper;
 
     
-    public <S, T> List<T> ToList(List<S> source, Class<T> targetClass) {
+    public <S, T> List<T> toList(List<S> source, Class<T> targetClass) {
         return source
                 .stream()
                 .map(element -> modelMapper.map(element, targetClass))
                 .collect(Collectors.toList());
     }
 
-    public <S, T> T To(S source, Class<T> targetClass) {
+    public <S, T> T to(S source, Class<T> targetClass) {
         return modelMapper.map(source, targetClass);
     }
 
