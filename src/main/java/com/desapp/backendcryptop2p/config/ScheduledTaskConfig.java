@@ -20,7 +20,6 @@ public class ScheduledTaskConfig {
 
   @Scheduled(fixedDelay = TEN_MINUTES)   
   public void verifyPerMinute() {    
-    System.out.println("CryptoUpdated"); 
     this.cryptoActiveService.updateCryptos();
   }
 }

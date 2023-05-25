@@ -41,13 +41,11 @@ public class CryptoActiveService {
     }
 
     public void updateCryptos() {
-        System.out.println("CryptoUpdated");
         Arrays.asList(CryptoType.values()).forEach(symbol -> {
             String uri = String.format("https://api1.binance.com/api/v3/ticker/price?symbol=%s",symbol);
             RestTemplate restTemplate = new RestTemplate();
             CryptoActive cryptoActive = restTemplate.getForObject(uri, CryptoActive.class);
             this.cryptoActiveRepository.save(cryptoActive);
-            System.out.println(cryptoActive);
         });
         
         
