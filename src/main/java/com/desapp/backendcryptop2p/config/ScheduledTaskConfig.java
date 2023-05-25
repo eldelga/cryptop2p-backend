@@ -13,12 +13,11 @@ public class ScheduledTaskConfig {
   @Autowired
   private CryptoActiveService cryptoActiveService;
 
-  private final long SEGUNDO = 1000;   
-  private final long MINUTO = SEGUNDO * 60;   
-  private final long HORA = MINUTO * 60;
-  private final long TEN_MINUTES = MINUTO * 10 ;
+  static private final long second = 1000;   
+  static private final long minute = second * 60;   
+  static private final long tenMinutes = minute * 10 ;
 
-  @Scheduled(fixedDelay = TEN_MINUTES)   
+  @Scheduled(fixedDelay = tenMinutes)   
   public void verifyPerMinute() {    
     this.cryptoActiveService.updateCryptos();
   }

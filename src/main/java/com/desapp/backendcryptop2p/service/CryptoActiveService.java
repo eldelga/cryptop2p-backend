@@ -24,7 +24,6 @@ public class CryptoActiveService {
    
     public List<CryptoActiveDTO> getAll() {
         return this.modelMapper.toList(this.cryptoActiveRepository.findAll(), CryptoActiveDTO.class);
-        // return this.cryptoActiveRepository.findAll();
     }
 
     public List<CryptoActiveDTO> findMaxdates(){

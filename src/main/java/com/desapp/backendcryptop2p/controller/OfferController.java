@@ -27,6 +27,5 @@ public class OfferController {
     @PostMapping(value = "/offers")
     public OfferCreateDTO save(@RequestBody OfferCreateDTO offerDTO) {
        return this.offerService.create(offerDTO);
-       // return offerDTO;
     }
 }

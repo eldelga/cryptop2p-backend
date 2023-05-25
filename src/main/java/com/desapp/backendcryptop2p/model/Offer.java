@@ -28,7 +28,6 @@ public class Offer {
     @JoinColumn(name = "user_created_by")
     private User createdBy;
 
-    // private Double amountInPesos ;
     private Double nominalValue ;
     private Double cryptoValue;
     private Double pesosQuotation;

@@ -17,23 +17,12 @@ import com.desapp.backendcryptop2p.service.UserService;
 @Component
 public class ApplicationStartupRunner implements CommandLineRunner {
   protected final Log logger = LogFactory.getLog(getClass());
-  
- // @Autowired
-  // private CryptoActiveService cryptoActiveService ;
-
-  // @Autowired
-  // private OfferService offerService ;
 
   @Autowired
   private UserService userService ;
 
   @Override
   public void run(String... args) throws Exception {
-    // cryptoActiveService.create(CryptoActiveDTO.builder().price(1000.00).type(CryptoActiveType.MATICUSDT).build());
-   //  CryptoActiveDTO newDTO = new CryptoActiveDTO();
-    // newDTO.setPrice(100.00);
-    // newDTO.setType(CryptoType.AAVEUSDT);
-    // cryptoActiveService.create(newDTO);
     logger.warn("ApplicationStartupRunner run method Started !!");
     UserCreateDTO uDTO = new UserCreateDTO();
     uDTO.setAddress("Fake 123");
