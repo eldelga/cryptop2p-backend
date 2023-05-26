@@ -12,5 +12,5 @@ public class OfferReadDTO {
     private Double nominalValue ;
     @Enumerated
     private CryptoType cryptoType;
-    private User user;
+    private UserReadDTO createdBy;
 }

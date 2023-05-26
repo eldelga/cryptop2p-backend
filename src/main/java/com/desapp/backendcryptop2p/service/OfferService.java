@@ -8,6 +8,7 @@ import com.desapp.backendcryptop2p.model.OfferCreateDTO;
 import com.desapp.backendcryptop2p.model.OfferReadDTO;
 import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.CryptoActive;
+import com.desapp.backendcryptop2p.model.ModelException;
 import com.desapp.backendcryptop2p.model.Offer;
 import com.desapp.backendcryptop2p.persistence.OfferRepository;
 import java.util.List;
@@ -35,15 +36,18 @@ public class OfferService {
     }
 
 
-    public OfferCreateDTO create(OfferCreateDTO offerDTO) {
+    public OfferCreateDTO create(OfferCreateDTO offerDTO) throws ModelException {
         Offer newOffer = this.modelMapper.to(offerDTO, Offer.class);
         User user = this.userService.getByEmail(offerDTO.getEmail());
-        CryptoActive cryptoActive = this.cryptoActiveService.getLastBySymbol(offerDTO.getCryptoType());
+        CryptoActive cryptoActiveLaseQuotation = this.cryptoActiveService.getLastBySymbol(offerDTO.getCryptoType());
+        Double cryptoActiveLastQuotationValue = cryptoActiveLaseQuotation.getPrice();
         newOffer.setCreatedBy(user);
         newOffer.setCryptoType(offerDTO.getCryptoType());
-        newOffer.setCryptoValue(cryptoActive.getPrice());
+        newOffer.setCryptoValue(offerDTO.getCryptoValue());
+        newOffer.setCryptoQuotation(cryptoActiveLastQuotationValue);
         newOffer.setPesosQuotation(quotationService.getQuotation().getVenta());
         newOffer.setNominalValue(offerDTO.getNominalValue());
+        newOffer.checkData();
         this.offerRepository.save(newOffer) ;
         return offerDTO;
     }

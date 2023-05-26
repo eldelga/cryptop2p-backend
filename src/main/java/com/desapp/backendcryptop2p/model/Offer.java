@@ -43,24 +43,21 @@ public class Offer {
 
     private boolean isActive;
 
-    public double getAmountInPesos(){
+    public Double getAmountInPesos(){
         return this.getPesosQuotation() * this.getCryptoValue();
     }
 
     public void checkData() throws ModelException {
-        double diff = this.getCryptoQuotation() - getCryptoValue();
-        double diffPercent = 0;
+        Double diff = this.getCryptoQuotation() - getCryptoValue();
+        Double diffPercent = 0.0;
 
         if (Math.abs(this.getCryptoQuotation()) > 0) {
             diffPercent = (diff / Math.abs(this.getCryptoQuotation())) * 100;
         } 
 
         if (Math.abs(diffPercent) > 5 ){
-            throw new ModelException();
+            throw new ModelException("difference between Crypto currency and crypto value should be < 5%");
         }
-
-
-
     }
 
 
