@@ -3,11 +3,16 @@ package com.desapp.backendcryptop2p.model;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.Getter;
-import lombok.Setter;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 
 @Entity
 @Table(name = "appUser")
@@ -15,20 +20,20 @@ public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter @Setter private Integer id;
-    @Getter @Setter private String firstName;
-    @Getter @Setter private String lastName;
-    @Getter @Setter private String address;
-    @Column(unique = true) @Getter @Setter private String email;
-    @Getter @Setter private String password;
-    @Getter  private String walletAddress;
-    @Getter  private String cvu;
-    @Getter @Setter Integer sucessfulOperations ;
-    @Getter @Setter Integer totalOperations;
-    @Getter Integer rate;
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String address;
+    @Column(unique = true)
+    private String email;
+    private String password;
+    private String walletAddress;
+    private String cvu;
+    Integer sucessfulOperations ;
+    Integer totalOperations;
+    Integer rate;
 
 
-    public User() {}
 
 	public User(String firstName,String lastName,String address,String email,String password,String walletAddress) {
 		this.firstName = firstName ; 
@@ -48,7 +53,5 @@ public class User  {
             this.rate = (this.getSucessfulOperations() / this.getTotalOperations() * 100) / 50 ;
         }
     }
-
-
 
 }

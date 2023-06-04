@@ -31,9 +31,9 @@ public class ApplicationStartupRunner implements CommandLineRunner {
     uDTO.setLastName("Lasname");
     uDTO.setPassword("passsword");
     User user = userService.getByEmail(uDTO.getEmail());
-    if (user == null){
-      userService.create(uDTO);
-    }
+    if(user == null)
+       userService.create(uDTO);
+    // }
     
     
 
