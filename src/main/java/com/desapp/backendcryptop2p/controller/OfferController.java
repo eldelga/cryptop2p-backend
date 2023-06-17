@@ -23,6 +23,7 @@ public class OfferController {
     @Autowired
     private OfferService offerService;
 
+    
     @GetMapping(value = "/offers")
     public List<OfferReadDTO> getAll() {
         return offerService.getAll();
@@ -33,6 +34,7 @@ public class OfferController {
         try{
             return this.offerService.create(offerDTO);
         }catch(ModelException ex){
+            System.out.println(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, ex.getMessage());
         }
     }

@@ -1,7 +1,12 @@
 package com.desapp.backendcryptop2p.model;
 
 
+import java.util.Collection;
+
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "appUser")
-public class User  {
+public class User  implements UserDetails { 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,5 +58,36 @@ public class User  {
             this.rate = (this.getSucessfulOperations() / this.getTotalOperations() * 100) / 50 ;
         }
     }
+
+ @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+ 
+    @Override
+    public String getUsername() {
+        return this.getEmail();
+    }
+ 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+ 
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+ 
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+ 
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 
 }

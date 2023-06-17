@@ -36,7 +36,7 @@ public class Operation {
     @JoinColumn(name = "user_destination")
     private User userDestination;
     private TransactionStatus operationStatus;
-    private currencyStatus cryptoStatus ;
-    private currencyStatus amountStatus ;
+    private CurrencyStatus cryptoStatus ;
+    private CurrencyStatus amountStatus ;
     
 }

@@ -7,12 +7,15 @@ import javax.persistence.GeneratedValue;
 import lombok.Data;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
 @Data
 @Entity
+
 public class CryptoActive implements Serializable {
 
     @Id

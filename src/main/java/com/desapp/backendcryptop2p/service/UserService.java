@@ -1,8 +1,10 @@
 package com.desapp.backendcryptop2p.service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.desapp.backendcryptop2p.component.MapperComponent;
+import com.desapp.backendcryptop2p.model.ModelException;
 import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.UserCreateDTO;
 import com.desapp.backendcryptop2p.model.UserReadDTO;
@@ -24,14 +26,17 @@ public class UserService {
         return this.modelMapper.toList(this.userRepository.findAll(), UserReadDTO.class);
     }
 
-    public User getByEmail(String email){
-        return this.userRepository.getByEmail(email);
+    public User getByEmail(String email) throws ModelException{
+        return this.userRepository.getByEmail(email).orElseThrow(() -> new ModelException("No user found"));
+        
     }
 
     public UserCreateDTO create(UserCreateDTO user) {
         User newUser = this.modelMapper.to(user, User.class) ; 
+        String password = new BCryptPasswordEncoder().encode(user.getPassword());
         newUser.setSucessfulOperations(0);
         newUser.setTotalOperations(0);
+        newUser.setPassword(password);
         newUser.updateRate();
         this.userRepository.save(newUser);
         return user;

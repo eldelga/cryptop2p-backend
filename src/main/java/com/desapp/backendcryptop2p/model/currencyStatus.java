@@ -1,6 +1,6 @@
 package com.desapp.backendcryptop2p.model;
 
-public enum currencyStatus  {
+public enum CurrencyStatus  {
     WAITING,
     SENDED,
     RECEIVED
