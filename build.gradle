@@ -34,7 +34,7 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:1.18.26'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
-	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 }
 
 tasks.named('test') {
