@@ -6,9 +6,7 @@ import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.UserCreateDTO;
 import com.desapp.backendcryptop2p.service.UserService;
@@ -30,10 +28,11 @@ public class ApplicationStartupRunner implements CommandLineRunner {
     uDTO.setEmail("user@domain.com");
     uDTO.setFirstName("FirstName");
     uDTO.setLastName("Lasname");
-    		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String password = passwordEncoder.encode("password");
-    uDTO.setPassword(password);
-    System.out.println(password);
+    	//	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// String password = passwordEncoder.encode("password");
+    uDTO.setPassword("password");
+ 
+   
     // User user = userService.getByEmail(uDTO.getEmail());
     // if(user == null)
       userService.create(uDTO);

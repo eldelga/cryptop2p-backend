@@ -36,9 +36,9 @@ public class OfferService {
     }
 
 
-    public OfferCreateDTO create(OfferCreateDTO offerDTO) throws ModelException {
+    public OfferCreateDTO create(OfferCreateDTO offerDTO,String email) throws ModelException {
         Offer newOffer = this.modelMapper.to(offerDTO, Offer.class);
-        User user = this.userService.getByEmail(offerDTO.getEmail());
+        User user = this.userService.getByEmail(email);
         CryptoActive cryptoActiveLaseQuotation = this.cryptoActiveService.getLastBySymbol(offerDTO.getCryptoType());
         Double cryptoActiveLastQuotationValue = cryptoActiveLaseQuotation.getPrice();
         newOffer.setCreatedBy(user);

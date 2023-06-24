@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.desapp.backendcryptop2p.component.MapperComponent;
+import com.desapp.backendcryptop2p.dto.AuthUserDTO;
 import com.desapp.backendcryptop2p.model.ModelException;
 import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.UserCreateDTO;
@@ -25,6 +26,7 @@ public class UserService {
     public List<UserReadDTO> getAll() {
         return this.modelMapper.toList(this.userRepository.findAll(), UserReadDTO.class);
     }
+
 
     public User getByEmail(String email) throws ModelException{
         return this.userRepository.getByEmail(email).orElseThrow(() -> new ModelException("No user found"));

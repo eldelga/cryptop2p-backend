@@ -9,6 +9,5 @@ public class OfferCreateDTO {
     private Double nominalValue ;
     @Enumerated
     private CryptoType cryptoType;
-    private String email;
     private Double cryptoValue;
 }

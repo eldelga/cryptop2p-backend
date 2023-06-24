@@ -1,12 +1,6 @@
 package com.desapp.backendcryptop2p.controller;
 
 
-import java.nio.file.attribute.UserPrincipal;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +13,12 @@ public class HelloController {
 
 
 	@ApiImplicitParam(name = "Authorization", value = "Access token", required = true, paramType = "header")
-	@GetMapping("/hello")
-	public String index(Authentication authCredential) {
+	@GetMapping("/checkAuthUserEmail")
+	public String checkAuthUserEmail(Authentication authCredential) {
   		UserDetails userPrincipal = (UserDetails)authCredential.getPrincipal(); 
 		return userPrincipal.getUsername();
 	}
+
+
 
 }

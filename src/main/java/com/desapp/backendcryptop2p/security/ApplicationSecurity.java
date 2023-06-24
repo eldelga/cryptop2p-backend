@@ -54,7 +54,13 @@ public class ApplicationSecurity {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
          
         http.authorizeRequests()
-                .antMatchers("/auth/login", "/docs/**", "/users").permitAll()
+                .antMatchers("/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/h2-ui/**",
+                        "/h2-console/**",
+                        "/register",
+                        "/auth/login",
+                        "/AllUsers").permitAll()
                 .anyRequest().authenticated();
          
             http.exceptionHandling()
