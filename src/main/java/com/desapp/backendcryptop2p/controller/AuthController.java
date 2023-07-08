@@ -9,17 +9,22 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.desapp.backendcryptop2p.model.User;
+import com.desapp.backendcryptop2p.model.UserCreateDTO;
 import com.desapp.backendcryptop2p.security.AuthRequestDTO;
 import com.desapp.backendcryptop2p.security.AuthResponse;
 import com.desapp.backendcryptop2p.security.JwtTokenUtil;
+import com.desapp.backendcryptop2p.service.UserService;
+
+
  
 @RestController
 public class AuthController {
     @Autowired AuthenticationManager authManager;
     @Autowired JwtTokenUtil jwtUtil;
+    @Autowired private UserService userService;
      
     @PostMapping("/auth/login")
-    public ResponseEntity<?> login(@RequestBody @Valid AuthRequestDTO request) {
+    public ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthRequestDTO request) {
         try {
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -35,5 +40,10 @@ public class AuthController {
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    @PostMapping("/auth/createUser")
+    public UserCreateDTO createUser(@RequestBody @Valid UserCreateDTO request) {
+        return userService.create(request);
     }
 }

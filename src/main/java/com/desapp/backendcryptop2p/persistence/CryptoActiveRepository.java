@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.desapp.backendcryptop2p.model.CryptoActive;
 import com.desapp.backendcryptop2p.model.CryptoType;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -16,4 +18,8 @@ public interface CryptoActiveRepository extends JpaRepository<CryptoActive,Strin
 
     @Query("FROM CryptoActive ca WHERE ca.symbol = ?1 AND ca.createAt = (SELECT MAX(ca2.createAt) FROM CryptoActive ca2 WHERE ca2.symbol = ?1)")
     CryptoActive getLastBySymbol(CryptoType symbol) ;
+
+  @Query("SELECT cryptoActive FROM CryptoActive cryptoActive WHERE cryptoActive.createAt >= ?1")
+  List<CryptoActive> getAllFrom(LocalDateTime date) ;
+
 }

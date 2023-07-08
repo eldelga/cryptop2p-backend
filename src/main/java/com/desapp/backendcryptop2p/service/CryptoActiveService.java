@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import com.desapp.backendcryptop2p.component.MapperComponent;
 import com.desapp.backendcryptop2p.model.CryptoActive;
@@ -30,6 +34,14 @@ public class CryptoActiveService {
         return this.modelMapper.toList(this.cryptoActiveRepository.getLastUpdated(), CryptoActiveDTO.class);
     }
 
+    public List<CryptoActiveDTO> getAllBefore(Integer hours){
+        Date date = new Date(System.currentTimeMillis() - hours * 60 * 60 * 1000);
+        Instant instant = date.toInstant();
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
+        return this.modelMapper.toList(this.cryptoActiveRepository.getAllFrom(localDateTime), CryptoActiveDTO.class);
+    }
+
     public void create(CryptoActiveDTO cryptoActiveDTO) {
         CryptoActive newCryptoActive = modelMapper.to(cryptoActiveDTO,CryptoActive.class) ;
         this.cryptoActiveRepository.save(newCryptoActive);
@@ -38,6 +50,8 @@ public class CryptoActiveService {
     public CryptoActive getLastBySymbol(CryptoType symbol){
         return this.cryptoActiveRepository.getLastBySymbol(symbol);
     }
+
+
 
     public void updateCryptos() {
         Arrays.asList(CryptoType.values()).forEach(symbol -> {

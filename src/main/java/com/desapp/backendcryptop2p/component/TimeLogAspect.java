@@ -40,7 +40,5 @@ public class TimeLogAspect {
         }
         return email;
     }
-
-
 }
 
