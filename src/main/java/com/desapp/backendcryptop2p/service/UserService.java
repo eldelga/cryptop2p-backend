@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.desapp.backendcryptop2p.component.MapperComponent;
 import com.desapp.backendcryptop2p.dto.AuthUserDTO;
+import com.desapp.backendcryptop2p.dto.UserCreateDTO;
+import com.desapp.backendcryptop2p.dto.UserReadDTO;
 import com.desapp.backendcryptop2p.model.ModelException;
 import com.desapp.backendcryptop2p.model.User;
-import com.desapp.backendcryptop2p.model.UserCreateDTO;
-import com.desapp.backendcryptop2p.model.UserReadDTO;
 import com.desapp.backendcryptop2p.persistence.UserRepository;
 import java.util.List;
 

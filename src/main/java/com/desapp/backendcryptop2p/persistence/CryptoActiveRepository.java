@@ -8,7 +8,6 @@ import com.desapp.backendcryptop2p.model.CryptoActive;
 import com.desapp.backendcryptop2p.model.CryptoType;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Repository

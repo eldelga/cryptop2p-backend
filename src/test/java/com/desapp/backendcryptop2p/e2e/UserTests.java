@@ -9,9 +9,6 @@ import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.UserFactory;
 
 
-
-
-
 @SpringBootTest
 public class UserTests {
 
@@ -21,18 +18,7 @@ public class UserTests {
 
     @BeforeEach
     void setUp() {
-
-        anyUser = UserFactory.anyUser();
+       anyUser = UserFactory.anyUser();
     }
 
-    @Test
-    public void isTrueTest(){
-        assertTrue(true, "ok");
-    }
-
-    @Test
-    void shouldFailValidationWhenUsernameIsEmpty() {
-
-   
-    }
 }

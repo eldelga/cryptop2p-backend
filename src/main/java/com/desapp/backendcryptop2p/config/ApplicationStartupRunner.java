@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import com.desapp.backendcryptop2p.dto.UserCreateDTO;
 import com.desapp.backendcryptop2p.model.User;
-import com.desapp.backendcryptop2p.model.UserCreateDTO;
 import com.desapp.backendcryptop2p.service.UserService;
 
 

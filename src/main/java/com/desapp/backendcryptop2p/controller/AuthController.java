@@ -8,8 +8,8 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import com.desapp.backendcryptop2p.dto.UserCreateDTO;
 import com.desapp.backendcryptop2p.model.User;
-import com.desapp.backendcryptop2p.model.UserCreateDTO;
 import com.desapp.backendcryptop2p.security.AuthRequestDTO;
 import com.desapp.backendcryptop2p.security.AuthResponse;
 import com.desapp.backendcryptop2p.security.JwtTokenUtil;

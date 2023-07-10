@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import com.desapp.backendcryptop2p.model.OperationReadDTO;
+
+import com.desapp.backendcryptop2p.dto.OperationReadDTO;
 import com.desapp.backendcryptop2p.service.OperationService;
 
 

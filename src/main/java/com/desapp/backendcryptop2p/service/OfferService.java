@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.desapp.backendcryptop2p.component.MapperComponent;
-import com.desapp.backendcryptop2p.model.OfferCreateDTO;
-import com.desapp.backendcryptop2p.model.OfferReadDTO;
+import com.desapp.backendcryptop2p.dto.OfferCreateDTO;
+import com.desapp.backendcryptop2p.dto.OfferReadDTO;
+import com.desapp.backendcryptop2p.dto.OperationReadDTO;
 import com.desapp.backendcryptop2p.model.Operation;
-import com.desapp.backendcryptop2p.model.OperationReadDTO;
 import com.desapp.backendcryptop2p.model.OperationType;
 import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.CryptoActive;

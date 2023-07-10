@@ -1,6 +1,11 @@
-package com.desapp.backendcryptop2p.model;
+package com.desapp.backendcryptop2p.dto;
 
 import java.time.LocalDateTime;
+
+import com.desapp.backendcryptop2p.model.CryptoType;
+import com.desapp.backendcryptop2p.model.CurrencyStatus;
+import com.desapp.backendcryptop2p.model.TransactionStatus;
+
 import lombok.Data;
 
 @Data

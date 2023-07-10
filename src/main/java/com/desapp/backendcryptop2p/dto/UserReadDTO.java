@@ -1,5 +1,5 @@
 
-package com.desapp.backendcryptop2p.model;
+package com.desapp.backendcryptop2p.dto;
 import lombok.Data;
 
 @Data

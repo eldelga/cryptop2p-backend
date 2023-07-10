@@ -12,10 +12,11 @@ import com.desapp.backendcryptop2p.service.OfferService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+
+import com.desapp.backendcryptop2p.dto.OfferCreateDTO;
+import com.desapp.backendcryptop2p.dto.OfferReadDTO;
+import com.desapp.backendcryptop2p.dto.OperationReadDTO;
 import com.desapp.backendcryptop2p.model.ModelException;
-import com.desapp.backendcryptop2p.model.OfferCreateDTO;
-import com.desapp.backendcryptop2p.model.OfferReadDTO;
-import com.desapp.backendcryptop2p.model.OperationReadDTO;
 
 import java.util.List;
 

@@ -1,5 +1,5 @@
 
-package com.desapp.backendcryptop2p.model;
+package com.desapp.backendcryptop2p.dto;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;

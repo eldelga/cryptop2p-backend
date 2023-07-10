@@ -1,8 +1,8 @@
 package com.desapp.backendcryptop2p.controller;
 
 import com.desapp.backendcryptop2p.dto.AuthUserDTO;
-import com.desapp.backendcryptop2p.model.UserCreateDTO;
-import com.desapp.backendcryptop2p.model.UserReadDTO;
+import com.desapp.backendcryptop2p.dto.UserCreateDTO;
+import com.desapp.backendcryptop2p.dto.UserReadDTO;
 import com.desapp.backendcryptop2p.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
