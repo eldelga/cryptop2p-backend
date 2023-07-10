@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.desapp.backendcryptop2p.component.MapperComponent;
 import com.desapp.backendcryptop2p.model.OfferCreateDTO;
 import com.desapp.backendcryptop2p.model.OfferReadDTO;
+import com.desapp.backendcryptop2p.model.Operation;
+import com.desapp.backendcryptop2p.model.OperationReadDTO;
+import com.desapp.backendcryptop2p.model.OperationType;
 import com.desapp.backendcryptop2p.model.User;
 import com.desapp.backendcryptop2p.model.CryptoActive;
 import com.desapp.backendcryptop2p.model.ModelException;
@@ -29,18 +32,32 @@ public class OfferService {
     private MapperComponent modelMapper;
 
     @Autowired
+    private OperationService operationService;
+
+    @Autowired
     private QuotationService quotationService;
 
     public List<OfferReadDTO> getAll() {
         return this.modelMapper.toList(this.offerRepository.findAllByActive(true), OfferReadDTO.class);
     }
 
+    public OfferReadDTO cancel(Integer id, String email) throws ModelException {
+        User user = this.userService.getByEmail(email);
+        Offer offer = offerRepository.getReferenceById(id) ;
+        offer.cancel();
+        offerRepository.save(offer);
+        user.updateCancelledOperations();
+        userService.update(user);
+        return this.modelMapper.to(offer, OfferReadDTO.class);
+    }
 
     public OfferCreateDTO create(OfferCreateDTO offerDTO,String email) throws ModelException {
         Offer newOffer = this.modelMapper.to(offerDTO, Offer.class);
         User user = this.userService.getByEmail(email);
         CryptoActive cryptoActiveLaseQuotation = this.cryptoActiveService.getLastBySymbol(offerDTO.getCryptoType());
         Double cryptoActiveLastQuotationValue = cryptoActiveLaseQuotation.getPrice();
+        user.updateOperation();
+        user.updateRate();
         newOffer.setCreatedBy(user);
         newOffer.setCryptoType(offerDTO.getCryptoType());
         newOffer.setCryptoValue(offerDTO.getCryptoValue());
@@ -49,7 +66,16 @@ public class OfferService {
         newOffer.setNominalValue(offerDTO.getNominalValue());
         newOffer.checkData();
         this.offerRepository.save(newOffer) ;
+        userService.update(user);
         return offerDTO;
+    }
+
+ 
+    public OperationReadDTO take(Integer offerId,String email) throws ModelException {
+        Offer offer = offerRepository.getReferenceById(offerId) ;
+        User userTaker = this.userService.getByEmail(email);
+        User userOffer = offer.getCreatedBy();
+        return this.operationService.createFromOffer(offer, userTaker, userOffer);
     }
 
     

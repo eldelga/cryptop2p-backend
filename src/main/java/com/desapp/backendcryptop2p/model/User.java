@@ -34,8 +34,9 @@ public class User  implements UserDetails {
     private String password;
     private String walletAddress;
     private String cvu;
-    Integer sucessfulOperations ;
-    Integer totalOperations;
+    Integer sucessfulOperations = 0 ;
+    Integer totalOperations = 0 ;
+    Integer cancelledOperations = 0;
     Integer rate;
 
 
@@ -47,17 +48,38 @@ public class User  implements UserDetails {
 		this.email = email ;
 		this.password = password ;
         this.walletAddress = walletAddress ;
-        this.sucessfulOperations = 0 ;
-        this.totalOperations = 0 ;
+
 	}
 
     public void updateRate() {
         if (this.getTotalOperations() == 0) {
-            this.rate = 5;
+            this.rate = 0;
         }else{
-            this.rate = (this.getSucessfulOperations() / this.getTotalOperations() * 100) / 50 ;
+            this.rate = (this.getSucessfulOperations() / (this.getTotalOperations() - this.getCancelledOperations())) * 5 ;
         }
     }
+
+
+    public void updateOperation(){
+        this.totalOperations=this.totalOperations + 1;
+    }
+
+    public void updateCancelledOperations() {
+        this.cancelledOperations = this.cancelledOperations + 1;
+    }
+
+    public void updateSuccededOperations() {
+        this.sucessfulOperations = this.sucessfulOperations + 1;
+    }
+
+    public String getReputation(){
+        if (this.getCancelledOperations() == 0 && this.getSucessfulOperations() == 0){
+            return "No operation finished yet";
+        }else{
+            return this.getRate() + " Stars" ;
+        }
+    }
+
 
  @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

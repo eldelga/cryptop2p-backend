@@ -47,6 +47,10 @@ public class Offer {
         return this.getPesosQuotation() * this.getCryptoValue();
     }
 
+    public void cancel(){
+        this.setActive(false);
+    }
+
     public void checkData() throws ModelException {
         Double diff = this.getCryptoQuotation() - getCryptoValue();
         Double diffPercent = 0.0;

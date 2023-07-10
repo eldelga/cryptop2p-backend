@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.databind.cfg.CoercionInputShape;
+
 import lombok.Data;
 @Data
 @Entity
@@ -19,9 +21,7 @@ public class Operation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private LocalDateTime createDate;
-    @Enumerated
-    private OperationType type;
+    private LocalDateTime createdAt;
     @Enumerated
     private CryptoType cryptoType ; 
     
@@ -30,13 +30,37 @@ public class Operation {
     private Double pesosQuotation;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_origin")
-    private User userOrigin;
+    @JoinColumn(name = "user_seller")
+    private User userSeller;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_destination")
-    private User userDestination;
+    @JoinColumn(name = "user_buyer")
+    private User userBuyer;
     private TransactionStatus operationStatus;
     private CurrencyStatus cryptoStatus ;
     private CurrencyStatus amountStatus ;
+
+    public Operation(){
+        this.cryptoStatus = CurrencyStatus.WAITING ;
+        this.amountStatus = CurrencyStatus.WAITING ;
+        this.operationStatus = TransactionStatus.OPEN ;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public void sendAmount() {
+        this.amountStatus = CurrencyStatus.SENDED;
+        this.updateStatus();
+    }
     
+    public void receiveCrypto() {
+        this.cryptoStatus = CurrencyStatus.RECEIVED;
+        this.updateStatus();
+    }
+
+    public void updateStatus(){
+        if( this.amountStatus == CurrencyStatus.SENDED && this.cryptoStatus == CurrencyStatus.RECEIVED ){
+            this.operationStatus = TransactionStatus.CLOSED ;
+        }
+    }
+
+
 }

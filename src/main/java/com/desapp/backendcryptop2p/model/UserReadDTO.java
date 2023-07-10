@@ -15,6 +15,8 @@ public class UserReadDTO {
     private String address;
     // @Email
     private Integer rate;
+
+    private String reputation;
     
     
 }
